@@ -1,0 +1,95 @@
+.products{
+    font-family: 'Poppins', sans-serif;
+}
+.title{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #0F172A;
+}
+.desc{
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #0F172A;
+    padding: 0.5rem 0;
+}
+.select{
+    margin: 1rem 0;
+    min-width: 10rem;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    background-color: #F1F5F9;
+    border-radius: 10px;
+    height: 2.2rem;
+    padding: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+.current_blockchain{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.image_blockchain{
+    display: flex;
+    align-items: center;
+}
+.image_blockchain img{
+    border-radius: 50%;
+}
+.noactive{
+    display: none;
+}
+.active{
+    position: absolute;
+    display: none;
+}
+.blockchain_name{
+    margin: 0 0.3rem;
+}
+.active{
+    display: block;
+    transition: all 0.2s linear;
+    height: auto;
+    overflow-y: auto;
+    max-height: 10rem;
+    background-color:#fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 0.5rem 0;
+}
+.active::-webkit-scrollbar {
+    width: 0.3rem;
+}
+.active::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+.active::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.6); 
+    border-radius: 10px;
+}
+.blockchain_item{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 0.6rem 0.3rem;
+    transition: all 0.2s linear;
+}
+.blockchain_item:hover{
+    background-color: #F1F5F9;
+}
+.blockchain_item_image{
+    margin-right: 0.6rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+}

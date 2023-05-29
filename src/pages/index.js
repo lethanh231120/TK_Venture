@@ -1,11 +1,62 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
-
+import Main from '@/components/layout/Main'
+import { useState, useEffect }  from 'react'
+import { data } from '@/data/data'
+import products from '../styles/products.module.css'
+import { CaretDownOutlined, CodeSandboxOutlined } from '@ant-design/icons';
+import ListProduct from '@/components/table/ListProduct'
 export default function Home() {
+  const  [openSelect, setOpenSelect] = useState(false)
+  const [blockchain, setBlockchain] = useState({
+    ExtendValue: '',
+    Name: 'All Blockchain',
+    key: 'all blockchain'
+  })
+  const [newData, setNewData] = useState(data)
+
+  const [listChain, setListChain] = useState([])
+  const handleClickItemBlockchain = (item) => {
+    setOpenSelect(false)
+    setBlockchain(item)
+  }
+
+  useEffect(() => {
+    const listChain = [] 
+    data?.forEach((item) => {
+      item?.BlockChains?.forEach((blockChainItem) => {
+        listChain.push(blockChainItem)
+      })
+    })
+    const uniqueArr = [... new Map(listChain.map(item => [item['Name'], item])).values()]
+    setListChain([
+      {
+        ExtendValue: <CodeSandboxOutlined style={{ fontSizeL: '1rem' }}/>,
+        Name: 'All Blockchain',
+        key: 'all blockchain'
+      },
+      ...uniqueArr
+    ])
+  }, [])
+
+
+  useEffect(() => {
+    const listProduct = []
+    if (blockchain.Name === 'All Blockchain') {
+      setNewData(data)
+    } else {
+      data?.forEach((item) => {
+        item?.BlockChains?.forEach((itemBlockChain) => {
+          if (itemBlockChain?.Name === blockchain?.Name) {
+            listProduct.push(item)
+          }
+        })
+      })
+      const uniwue = [... new Map(listProduct.map(item => [item['Name'], item])).values()]
+      setNewData(uniwue)
+    }
+  }, [blockchain])
+
   return (
     <>
       <Head>
@@ -14,110 +65,49 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+      <div className={products.products}>
+        <div className={products.title}>
+          Best Free P2E NFT Games in 2022
+        </div>
+        <div className={products.desc}>
+          Are you looking for Games that Free-to-play? Here are the best F2P NFT games available.
+        </div>
+        <div className={products.select} onClick={() => setOpenSelect(!openSelect)}>
+          <div className={products.current_blockchain}>
+            <div className={products.image_blockchain}>
+              {blockchain?.Name === 'All Blockchain' ? <CodeSandboxOutlined style={{ fontSizeL: '1rem' }}/>
+                : <Image src={blockchain.ExtendValue} width={20} height={20} alt='image'/>}
+            </div>
+            <div className={products.blockchain_name}>
+              {blockchain.Name}
+            </div>
+          </div>
+          <CaretDownOutlined />
+          <div className={openSelect ? products.active : products.noactive}>
+            {listChain.length > 0 && listChain?.map((item, index) => (
+              <div className={products.blockchain_item} onClick={() => handleClickItemBlockchain(item)} key={index}>
+                {item?.Name === 'All Blockchain' ? <CodeSandboxOutlined style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}/> : item?.ExtendValue !== null && (
+                  <Image src={item?.ExtendValue} width={25} height={25} alt='image blockchain' className={products.blockchain_item_image}/>
+                )}
+                <div className={products.blockchain_item_text}>
+                  {item?.Name}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
+        <div className={products.table}>
+          <ListProduct data={newData}/>
         </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      </div>
     </>
   )
+}
+
+Home.Layout = Main
+
+export const getStaticProps = async() => {
+  return {
+    props: {}
+  }
 }
