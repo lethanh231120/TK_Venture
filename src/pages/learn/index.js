@@ -9,5 +9,5 @@ const Learn = () => {
   )
 }
 
-export default Learn
 Learn.Layout = Main
+export default Learn

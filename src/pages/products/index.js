@@ -9,5 +9,5 @@ const ListProduct = () => {
   )
 }
 
-export default ListProduct
 ListProduct.Layout = Main
+export default ListProduct

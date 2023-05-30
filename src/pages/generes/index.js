@@ -9,5 +9,5 @@ const Generes = () => {
   )
 }
 
-export default Generes
 Generes.Layout = Main
+export default Generes

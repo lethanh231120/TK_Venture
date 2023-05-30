@@ -9,5 +9,5 @@ const WhiteLists = () => {
   )
 }
 
-export default WhiteLists
 WhiteLists.Layout = Main
+export default WhiteLists

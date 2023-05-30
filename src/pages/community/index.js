@@ -4,10 +4,10 @@ import React from 'react'
 const Community = () => {
   return (
     <div>
-      thiss is community page
+      this is community page
     </div>
   )
 }
 
-export default Community
 Community.Layout = Main
+export default Community

@@ -9,5 +9,5 @@ const Detail = () => {
   )
 }
 
-export default Detail
 Detail.Layout = DetailLayout
+export default Detail

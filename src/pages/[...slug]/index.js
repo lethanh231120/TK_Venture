@@ -1,3 +1,4 @@
+import Main from '@/components/layout/Main'
 import React from 'react'
 
 const NotFound = () => {
@@ -7,3 +8,4 @@ const NotFound = () => {
 }
 
 export default NotFound
+NotFound.Layout = Main

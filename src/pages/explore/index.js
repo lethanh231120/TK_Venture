@@ -9,5 +9,5 @@ const Explore = () => {
   )
 }
 
-export default Explore
 Explore.Layout = Main
+export default Explore

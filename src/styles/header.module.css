@@ -108,6 +108,7 @@
     padding: 0.3rem;
     transition: all 0.2s linear;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
 }
 .data_item:hover{
     background-color: #F1F5F9;

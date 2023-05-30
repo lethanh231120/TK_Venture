@@ -24,7 +24,6 @@ const Header = () => {
     const handleChangeInput = debounce((e) => saveInput(e))
 
     const handleClickDetailItem = (item) => {
-        console.log(item)
         setListProduct([])
         router.push(`/products/${item?.Code}`)
     }
